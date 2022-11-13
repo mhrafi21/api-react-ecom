@@ -1,20 +1,23 @@
 import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Product.css';
 
 export default function Product(props) {
 
+
   return (
     <div className = "main">
     <div className="container">
-      <h1 className = 'py-4'>Shop</h1>
+        <h1 className='py-4'>Shop</h1>
+      
       <div className="row">
-        {props.name.map(product =>
-          
-          <div className="col-6 col-md-3 col-lg-2 text-decoration-none p-0 p-2 h-100 ">
+          {props.name.map(product =>
+            <div className="col-6 col-md-3 col-lg-2 text-decoration-none p-0 p-2 h-100 ">
             <div className="card h-col">
          <img className="img-fluid" style = {{height:'10rem', width:'100%'}} src={product.image} alt = 'd'></img>
              <div class="card-body">
-              <h5 className="card-title fs-6">{ product.title.slice(0,25) }...</h5>
+              <h5 className="card-title fs-6"> <Link to={'/product/'+product.id}>{product.title.slice(0,25) }</Link>  ...</h5>
               <p className="card-text text-danger fs-5">${ product.price }</p>
                 <p className="card-text">
                   <small className='d-flex align-items-center' style={{ color: 'orange' }}>
@@ -28,7 +31,7 @@ export default function Product(props) {
                    </div>
                     <span class="text-muted">({product.rating.count}) </span></small>
                 </p>
-                <a href="cart.js" className = 'btn btn-primary w-100'>Add to cart</a>
+                <button onClick = {()=>{props.CartHandler(props.CartHandler)}} className = 'btn btn-primary w-100'>Add to cart</button>
     
              </div>
             </div>
